@@ -236,13 +236,13 @@ pre_action_fade_seconds = 2.0
 cancel = [ "Escape" ]
 copy = [ "Ctrl+c" ]
 delete = [ "Delete" ]
-down = [ "Down" ]
-left = [ "Left" ]
-right = [ "Right" ]
+down = [ "Down", "Ctrl+j" ]
+left = [ "Left", "Ctrl+h" ]
+right = [ "Right", "Ctrl+l" ]
 save = [ "Ctrl+s" ]
 tab_next = [ "Tab" ]
 tab_previous = [ "Shift+ISO_Left_Tab" ]
-up = [ "Up" ]
+up = [ "Up", "Ctrl+k" ]
 validate = [ "Return", "KP_Enter", "space" ]
 
 [location]
@@ -307,12 +307,12 @@ widget_order = [ "lockscreen-login-box@winit", "lockscreen-login-box@Virtual-1" 
     [lockscreen_widgets.widget."lockscreen-login-box@winit"]
     box_height = 196.0
     box_width = 720.0
-    cx = 618.0
-    cy = 342.72000122070312
+    cx = 639.9998779296875
+    cy = 384.0001220703125
     enabled = true
     output = "winit"
-    placement_height = 714.0
-    placement_width = 1236.0
+    placement_height = 800.0
+    placement_width = 1280.0
     rotation = 0.0
     type = "login_box"
 
@@ -650,7 +650,7 @@ source = "community"
 wallpaper_scheme = "m3-content"
 
     [theme.templates]
-    builtin_ids = [ "kitty" ]
+    builtin_ids = [ "gtk3", "gtk4", "kitty", "niri" ]
     community_ids = [ "superfile" ]
     enable_builtin_templates = true
     enable_community_templates = false

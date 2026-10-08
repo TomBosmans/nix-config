@@ -115,6 +115,13 @@
           "XF86MonBrightnessDown".spawn-sh = "${noctalia} msg brightness-down";
         };
       };
+
+      extraSettings = [{
+        include = [
+          { optional = true; }
+          "~/.config/niri/noctalia.kdl"
+        ];
+      }];
     };
   };
 }
