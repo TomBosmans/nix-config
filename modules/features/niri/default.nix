@@ -47,6 +47,8 @@
           "Mod+S".spawn-sh = "${noctalia} msg panel-toggle control-center";
           "Alt+Tab".spawn-sh = "${noctalia} msg window-switcher hold";
 
+          "Mod+Slash".spawn-sh = "${noctalia} msg settings-open";
+
           # Navigation
           "Mod+H".focus-column-left = {};
           "Mod+J".focus-window-or-workspace-down = {};
