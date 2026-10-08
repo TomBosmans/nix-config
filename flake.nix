@@ -7,6 +7,11 @@
     import-tree.url = "github:denful/import-tree";
 
     wrapper-modules.url = "github:nix-community/nix-wrapper-modules";
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake
