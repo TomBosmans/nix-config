@@ -650,7 +650,7 @@ source = "community"
 wallpaper_scheme = "m3-content"
 
     [theme.templates]
-    builtin_ids = []
+    builtin_ids = [ "kitty" ]
     community_ids = [ "superfile" ]
     enable_builtin_templates = true
     enable_community_templates = false

@@ -1,5 +1,9 @@
 { self, inputs, ... }: {
   flake.nixosModules.niri = { pkgs, lib, ... }: {
+    imports = [
+      self.nixosModules.kitty
+    ];
+
     programs.niri = {
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
@@ -8,7 +12,7 @@
 
   perSystem = { pkgs, lib, self', ... }: let
     noctalia = lib.getExe self'.packages.myNoctalia;
-    kitty = lib.getExe pkgs.kitty;
+    kitty = lib.getExe self'.packages.myKitty;
   in {
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;

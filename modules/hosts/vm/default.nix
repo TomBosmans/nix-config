@@ -3,6 +3,8 @@
     modules = [
       self.nixosModules.vmConfiguration
       self.nixosModules.vmHardware
+      self.nixosModules.fonts
+      self.nixosModules.niri
     ];
   };
 }
