@@ -307,12 +307,12 @@ widget_order = [ "lockscreen-login-box@winit", "lockscreen-login-box@Virtual-1" 
     [lockscreen_widgets.widget."lockscreen-login-box@winit"]
     box_height = 196.0
     box_width = 720.0
-    cx = 639.9998779296875
-    cy = 384.0001220703125
+    cx = 617.9998779296875
+    cy = 342.7200927734375
     enabled = true
     output = "winit"
-    placement_height = 800.0
-    placement_width = 1280.0
+    placement_height = 714.0
+    placement_width = 1236.0
     rotation = 0.0
     type = "login_box"
 
@@ -640,7 +640,7 @@ swap_pct_activity_threshold = 20.0
 swap_pct_critical_threshold = 80.0
 
 [theme]
-builtin = "Catppuccin"
+builtin = "Dracula"
 community_palette = "Catppuccin Macchiato Blue"
 custom_palette = ""
 mode = "dark"
@@ -651,9 +651,9 @@ wallpaper_scheme = "m3-content"
 
     [theme.templates]
     builtin_ids = [ "gtk3", "gtk4", "kitty", "niri" ]
-    community_ids = [ "superfile" ]
+    community_ids = [ "bat", "fzf", "superfile" ]
     enable_builtin_templates = true
-    enable_community_templates = false
+    enable_community_templates = true
 
 [wallpaper]
 directory = ""

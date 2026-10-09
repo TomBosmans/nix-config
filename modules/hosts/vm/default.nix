@@ -4,6 +4,7 @@
       self.nixosModules.vmConfiguration
       self.nixosModules.vmHardware
       self.nixosModules.fonts
+      self.nixosModules.zsh
       self.nixosModules.niri
     ];
   };
