@@ -1,5 +1,7 @@
 { self, inputs, ... }: {
   flake.nixosModules.kitty = { pkgs, ... }: {
+    imports = [self.nixosModules.jetbrainsMono];
+
     environment.systemPackages = [
       self.packages.${pkgs.stdenv.hostPlatform.system}.myKitty
     ];
@@ -8,6 +10,10 @@
   perSystem = { pkgs, lib, self', ... }: {
     packages.myKitty = inputs.wrapper-modules.wrappers.kitty.wrap {
       inherit pkgs;
+
+      envDefault.FONTCONFIG_FILE = pkgs.makeFontsConf {
+        fontDirectories = [pkgs.nerd-fonts.jetbrains-mono];
+      };
 
       font = {
         name = "JetBrainsMono Nerd Font";

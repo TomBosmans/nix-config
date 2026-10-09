@@ -1,7 +1,9 @@
 { self, inputs, ... }: {
   flake.nixosModules.niri = { pkgs, lib, ... }: {
     imports = [
+      self.nixosModules.noctalia
       self.nixosModules.kitty
+      self.nixosModules.zsh
     ];
 
     programs.niri = {
