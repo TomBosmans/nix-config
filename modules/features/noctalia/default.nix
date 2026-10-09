@@ -3,7 +3,8 @@
     imports = [self.nixosModules.sourceSans];
   };
 
-  perSystem = { pkgs, system, ... }: let
+  perSystem = { system, ... }: let
+    pkgs = inputs.noctalia.inputs.nixpkgs.legacyPackages.${system};
     wallpapers = ../../../assets/wallpapers;
     configHome = pkgs.symlinkJoin {
       name = "noctalia-config";
