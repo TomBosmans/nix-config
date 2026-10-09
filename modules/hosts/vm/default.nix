@@ -3,6 +3,7 @@
     modules = [
       self.nixosModules.vmConfiguration
       self.nixosModules.vmHardware
+      self.nixosModules.garbageCollection
       self.nixosModules.niri
     ];
   };
