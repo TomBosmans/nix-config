@@ -4,7 +4,20 @@
   };
 
   perSystem = { pkgs, system, ... }: let
-    configHome = pkgs.writeTextDir "noctalia/config.toml" (builtins.readFile ./noctalia-config.toml);
+    wallpapers = ../../../assets/wallpapers;
+    configHome = pkgs.symlinkJoin {
+      name = "noctalia-config";
+      paths = [
+        (pkgs.writeTextDir "noctalia/config.toml" (builtins.readFile ./noctalia-config.toml))
+        (pkgs.writeTextDir "noctalia/wallpaper.toml" ''
+          [wallpaper]
+          directory = "${wallpapers}"
+
+          [wallpaper.default]
+          path = "${wallpapers}/forrest.png"
+        '')
+      ];
+    };
   in {
     packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
       inherit pkgs;
