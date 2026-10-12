@@ -11,6 +11,8 @@
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
     };
+
+    environment.systemPackages = [pkgs.phinger-cursors];
   };
 
   perSystem = { pkgs, lib, self', ... }: let
@@ -28,6 +30,9 @@
         input.keyboard.repeat-delay = 200;
         input.keyboard.repeat-rate = 25;
         input.touchpad.natural-scroll = {};
+
+        cursor.xcursor-theme = "phinger-cursors-dark";
+        cursor.xcursor-size = 24;
 
         layout.gaps = 5;
         layout.focus-ring.width = 2;
