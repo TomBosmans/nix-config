@@ -5,6 +5,7 @@
       self.nixosModules.vmHardware
       self.nixosModules.garbageCollection
       self.nixosModules.niri
+      self.nixosModules.noctalia-greeter
     ];
   };
 }
