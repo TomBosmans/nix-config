@@ -5,6 +5,7 @@
       self.nixosModules.kitty
       self.nixosModules.opencode
       self.nixosModules.zsh
+      self.nixosModules.nvim
     ];
 
     programs.niri = {
