@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "catppuccin-eza": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756880706,
+        "narHash": "sha256-Q+C07IReQQBO5xYuFiFbS1wjmO4gdt/wIJWHNwIizSc=",
+        "owner": "catppuccin",
+        "repo": "eza",
+        "rev": "70f805f6cc27fa5b91750b75afb4296a0ec7fec9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "eza",
+        "type": "github"
+      }
+    },
     "catppuccin-fzf": {
       "flake": false,
       "locked": {
@@ -171,6 +187,7 @@
     "root": {
       "inputs": {
         "catppuccin-bat": "catppuccin-bat",
+        "catppuccin-eza": "catppuccin-eza",
         "catppuccin-fzf": "catppuccin-fzf",
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",

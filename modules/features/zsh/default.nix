@@ -12,9 +12,9 @@
       skipGlobalRC = true;
 
       runtimePkgs = with pkgs; [
-        eza
         zoxide
         self'.packages.myBat
+        self'.packages.myEza
         self'.packages.myFzf
         self'.packages.myStarship
       ];
