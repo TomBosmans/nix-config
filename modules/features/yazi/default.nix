@@ -11,6 +11,8 @@
       categories = ["System" "FileTools" "FileManager"];
     };
   in {
+    imports = [self.nixosModules.trash];
+
     environment.systemPackages = [
       myYazi
       yaziDesktop
