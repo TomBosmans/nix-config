@@ -18,6 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin-bat = { url = "github:catppuccin/bat"; flake = false; };
+    catppuccin-fzf = { url = "github:catppuccin/fzf"; flake = false; };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake

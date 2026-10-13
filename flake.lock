@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "catppuccin-fzf": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782647545,
+        "narHash": "sha256-A6X0TyzET1HbcCv4tlUvhMr6IguRYA9GYqWDKY7XeMg=",
+        "owner": "catppuccin",
+        "repo": "fzf",
+        "rev": "7508f8141286fb95249100a2b5325960320dcf32",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "fzf",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -155,6 +171,7 @@
     "root": {
       "inputs": {
         "catppuccin-bat": "catppuccin-bat",
+        "catppuccin-fzf": "catppuccin-fzf",
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",

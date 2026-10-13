@@ -13,9 +13,9 @@
 
       runtimePkgs = with pkgs; [
         eza
-        fzf
         zoxide
         self'.packages.myBat
+        self'.packages.myFzf
         self'.packages.myStarship
       ];
 
@@ -42,12 +42,6 @@
         autoload -Uz compinit
         mkdir -p "''${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
         compinit -d "''${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
-
-        fzf() (
-          local theme="''${XDG_CONFIG_HOME:-$HOME/.config}/fzf/themes/noctalia.sh"
-          [[ -r "$theme" ]] && source "$theme"
-          command ${pkgs.fzf}/bin/fzf "$@"
-        )
 
         source <(fzf --zsh)
         zstyle ':fzf-tab:*' use-fzf-default-opts yes
