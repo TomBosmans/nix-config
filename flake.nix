@@ -17,6 +17,7 @@
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin-bat = { url = "github:catppuccin/bat"; flake = false; };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake
