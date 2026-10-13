@@ -4,7 +4,7 @@
     users.defaultUserShell = self.packages.${pkgs.stdenv.hostPlatform.system}.myZsh;
   };
 
-  perSystem = { pkgs, self', ... }: {
+  perSystem = { pkgs, lib, self', ... }: {
     packages.myZsh = inputs.wrapper-modules.wrappers.zsh.wrap {
       inherit pkgs;
 
@@ -18,6 +18,10 @@
         self'.packages.myFzf
         self'.packages.myStarship
       ];
+
+      env = {
+        MANPAGER = "${lib.getExe self'.packages.myNvim} +Man!";
+      };
 
       zshAliases = {
         cd = "z";
