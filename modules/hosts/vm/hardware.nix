@@ -7,6 +7,8 @@
     boot.kernelModules = [ ];
     boot.extraModulePackages = [ ];
 
+    environment.sessionVariables.KITTY_FORCE_SOFTWARE_RENDERING = "1";
+
     fileSystems."/" =
       { device = "/dev/disk/by-uuid/4c9f2e89-9fd2-4f07-936a-ca7a088c3a8c";
         fsType = "ext4";

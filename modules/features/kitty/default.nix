@@ -15,6 +15,16 @@
         fontDirectories = [pkgs.nerd-fonts.jetbrains-mono];
       };
 
+      # Kitty cannot start with UTM's VirGL renderer. Force software rendering
+      # only for Kitty so Niri and the rest of the session remain GPU accelerated.
+      runShell = lib.optionals pkgs.stdenv.isLinux [
+        ''
+          if [[ "''${KITTY_FORCE_SOFTWARE_RENDERING:-0}" == "1" ]]; then
+            export LIBGL_ALWAYS_SOFTWARE=1
+          fi
+        ''
+      ];
+
       font = {
         name = "JetBrainsMono Nerd Font";
         size = 10;
