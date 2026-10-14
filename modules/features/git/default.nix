@@ -1,18 +1,16 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.git = { pkgs, ... }: {
-    environment.systemPackages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.myGit
-    ];
+{ config, ... }: {
+  flake.nixosModules.git = {
+    imports = [config.flake.wrappers.myGit.install];
+
+    wrappers.myGit.enable = true;
   };
 
-  perSystem = { pkgs, ... }: {
-    packages.myGit = inputs.wrapper-modules.wrappers.git.wrap {
-      inherit pkgs;
+  flake.wrappers.myGit = { wlib, ... }: {
+    imports = [wlib.wrapperModules.git];
 
-      settings.user = {
-        name = "tbosmans";
-        email = "tom.94.bosmans@gmail.com";
-      };
+    settings.user = {
+      name = "tbosmans";
+      email = "tom.94.bosmans@gmail.com";
     };
   };
 }

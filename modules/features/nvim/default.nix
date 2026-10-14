@@ -1,8 +1,8 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.nvim = { pkgs, ... }: {
-    environment.systemPackages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.myNvim
-    ];
+{ config, ... }: {
+  flake.nixosModules.nvim = {
+    imports = [config.flake.wrappers.myNvim.install];
+
+    wrappers.myNvim.enable = true;
 
     environment.variables = {
       EDITOR = "nvim";
@@ -10,20 +10,18 @@
     };
   };
 
-  perSystem = { pkgs, ... }: {
-    packages.myNvim = inputs.wrapper-modules.wrappers.neovim.wrap {
-      inherit pkgs;
+  flake.wrappers.myNvim = { pkgs, wlib, ... }: {
+    imports = [wlib.wrapperModules.neovim];
 
-      settings.config_directory = ./.;
+    settings.config_directory = ./.;
 
-      runtimePkgs = with pkgs; [
-        cargo
-        gcc
-        gnumake
-        ripgrep
-        rustc
-        tree-sitter
-      ];
-    };
+    runtimePkgs = with pkgs; [
+      cargo
+      gcc
+      gnumake
+      ripgrep
+      rustc
+      tree-sitter
+    ];
   };
 }

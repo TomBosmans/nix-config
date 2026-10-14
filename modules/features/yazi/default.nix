@@ -1,64 +1,66 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.yazi = { pkgs, lib, ... }: let
-    myYazi = self.packages.${pkgs.stdenv.hostPlatform.system}.myYazi;
-    yaziDesktop = pkgs.makeDesktopItem {
-      name = "yazi";
-      desktopName = "Yazi";
-      comment = "Browse files with Yazi";
-      exec = "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.myKitty} --detach ${lib.getExe myYazi} %f";
-      mimeTypes = ["inode/directory"];
-      terminal = false;
-      categories = ["System" "FileTools" "FileManager"];
-    };
-  in {
-    imports = [self.nixosModules.trash];
+{ self, inputs, config, ... }: {
+  flake.nixosModules.yazi = {
+    imports = [
+      self.nixosModules.trash
+      config.flake.wrappers.myYazi.install
+      ({ config, pkgs, lib, ... }: let
+        myYazi = config.wrappers.myYazi.wrapper;
+        yaziDesktop = pkgs.makeDesktopItem {
+          name = "yazi";
+          desktopName = "Yazi";
+          comment = "Browse files with Yazi";
+          exec = "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.myKitty} --detach ${lib.getExe myYazi} %f";
+          mimeTypes = ["inode/directory"];
+          terminal = false;
+          categories = ["System" "FileTools" "FileManager"];
+        };
+      in {
+        environment.systemPackages = [yaziDesktop];
 
-    environment.systemPackages = [
-      myYazi
-      yaziDesktop
+        xdg.mime.defaultApplications."inode/directory" = "yazi.desktop";
+      })
     ];
 
-    xdg.mime.defaultApplications."inode/directory" = "yazi.desktop";
+    wrappers.myYazi.enable = true;
   };
 
-  perSystem = { pkgs, lib, self', ... }: let
-    kitty = lib.getExe self'.packages.myKitty;
-    opencode = lib.getExe self'.packages.myOpencode;
+  flake.wrappers.myYazi = { pkgs, lib, wlib, ... }: let
+    myPackages = self.packages.${pkgs.stdenv.hostPlatform.system};
+    kitty = lib.getExe myPackages.myKitty;
+    opencode = lib.getExe myPackages.myOpencode;
     zip = lib.getExe pkgs.zip;
     theme = lib.recursiveUpdate
       (builtins.fromTOML (builtins.readFile "${inputs.catppuccin-yazi}/themes/macchiato/catppuccin-macchiato-blue.toml"))
-      {mgr.syntect_theme = self'.packages.myBat.theme;};
+      {mgr.syntect_theme = myPackages.myBat.theme;};
   in {
-    packages.myYazi = inputs.wrapper-modules.wrappers.yazi.wrap {
-      inherit pkgs;
-      package = pkgs.yazi.override {fzf = self'.packages.myFzf;};
+    imports = [wlib.wrapperModules.yazi];
+    package = pkgs.yazi.override {fzf = myPackages.myFzf;};
 
-      runtimePkgs = lib.optionals pkgs.stdenv.isLinux [
-        pkgs.wl-clipboard
-        pkgs.xdg-utils
+    runtimePkgs = lib.optionals pkgs.stdenv.isLinux [
+      pkgs.wl-clipboard
+      pkgs.xdg-utils
+    ];
+
+    settings = {
+      inherit theme;
+
+      keymap.mgr.prepend_keymap = [
+        {
+          on = ["e" "t"];
+          run = "shell '${kitty} --detach --directory=\"$PWD\"'";
+          desc = "Open terminal here";
+        }
+        {
+          on = ["e" "o"];
+          run = "shell '${kitty} --detach --directory=\"$PWD\" ${opencode}'";
+          desc = "Open opencode";
+        }
+        {
+          on = ["e" "z"];
+          run = "shell 'if [ -z \"%s\" ]; then echo \"No files selected\"; sleep 1; else ${zip} -jr \"$(basename \"$PWD\").zip\" %s; fi'";
+          desc = "Zip selected files";
+        }
       ];
-
-      settings = {
-        inherit theme;
-
-        keymap.mgr.prepend_keymap = [
-          {
-            on = ["e" "t"];
-            run = "shell '${kitty} --detach --directory=\"$PWD\"'";
-            desc = "Open terminal here";
-          }
-          {
-            on = ["e" "o"];
-            run = "shell '${kitty} --detach --directory=\"$PWD\" ${opencode}'";
-            desc = "Open opencode";
-          }
-          {
-            on = ["e" "z"];
-            run = "shell 'if [ -z \"%s\" ]; then echo \"No files selected\"; sleep 1; else ${zip} -jr \"$(basename \"$PWD\").zip\" %s; fi'";
-            desc = "Zip selected files";
-          }
-        ];
-      };
     };
   };
 }

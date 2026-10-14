@@ -1,6 +1,4 @@
-{ inputs, config, withSystem, ... }: {
-  imports = [inputs.wrapper-modules.flakeModules.wrappers];
-
+{ self, config, ... }: {
   flake.nixosModules.zsh = {
     imports = [config.flake.wrappers.myZsh.install];
 
@@ -10,26 +8,24 @@
     };
   };
 
-  flake.wrappers.myZsh = { pkgs, wlib, ... }: {
+  flake.wrappers.myZsh = { pkgs, lib, wlib, ... }: let
+    myPackages = self.packages.${pkgs.stdenv.hostPlatform.system};
+  in {
     imports = [wlib.wrapperModules.zsh];
 
     hmSessionVariables = null;
     skipGlobalRC = true;
 
-    runtimePkgs = withSystem pkgs.stdenv.hostPlatform.system ({ self', ... }: [
+    runtimePkgs = [
       pkgs.zoxide
-      self'.packages.myBat
-      self'.packages.myEza
-      self'.packages.myFzf
-      {
-        data = self'.packages.myNvim;
-        prefix = true;
-      }
-      self'.packages.myStarship
-    ]);
+      myPackages.myBat
+      myPackages.myEza
+      myPackages.myFzf
+      myPackages.myStarship
+    ];
 
     env = {
-      MANPAGER = "nvim +Man!"; # use nvim as man pager
+      MANPAGER = "${lib.getExe myPackages.myNvim} +Man!"; # use nvim as man pager
     };
 
     zshAliases = {

@@ -3,8 +3,8 @@
     imports = [self.nixosModules.sourceSans];
   };
 
-  perSystem = { system, ... }: let
-    pkgs = inputs.noctalia.inputs.nixpkgs.legacyPackages.${system};
+  flake.wrappers.myNoctalia = { pkgs, wlib, ... }: let
+    system = pkgs.stdenv.hostPlatform.system;
     wallpapers = ../../../assets/wallpapers;
     configHome = pkgs.symlinkJoin {
       name = "noctalia-config";
@@ -20,15 +20,13 @@
       ];
     };
   in {
-    packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
-      inherit pkgs;
-      package = inputs.noctalia.packages.${system}.default;
+    imports = [wlib.wrapperModules.noctalia-shell];
+    package = inputs.noctalia.packages.${system}.default;
 
-      env.NOCTALIA_CONFIG_HOME = configHome;
+    env.NOCTALIA_CONFIG_HOME = configHome;
 
-      envDefault.FONTCONFIG_FILE = pkgs.makeFontsConf {
-        fontDirectories = [pkgs.source-sans];
-      };
+    envDefault.FONTCONFIG_FILE = pkgs.makeFontsConf {
+      fontDirectories = [pkgs.source-sans];
     };
   };
 }
