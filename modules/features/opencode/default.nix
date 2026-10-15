@@ -1,6 +1,23 @@
-{ inputs, config, ... }: {
+{ self, inputs, config, ... }: {
   flake.nixosModules.opencode = {
-    imports = [config.flake.wrappers.myOpencode.install];
+    imports = [
+      config.flake.wrappers.myOpencode.install
+      ({ config, pkgs, lib, ... }: let
+        myOpencode = config.wrappers.myOpencode.wrapper;
+        opencodePackage = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.opencode;
+        opencodeDesktop = pkgs.makeDesktopItem {
+          name = "opencode";
+          desktopName = "OpenCode";
+          comment = "AI coding agent";
+          exec = "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.myKitty} --detach ${lib.getExe myOpencode}";
+          icon = "${opencodePackage.src}/packages/desktop/icons/prod/icon.png";
+          terminal = false;
+          categories = ["Development"];
+        };
+      in {
+        environment.systemPackages = [opencodeDesktop];
+      })
+    ];
 
     wrappers.myOpencode.enable = true;
   };
@@ -66,7 +83,7 @@
 
     tui-settings = {
       "$schema" = "https://opencode.ai/tui.json";
-      theme = "matugen";
+      theme = "catppuccin-macchiato";
     };
   };
 }

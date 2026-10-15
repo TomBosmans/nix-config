@@ -171,7 +171,7 @@ battery_percentage_changed = []
 battery_plugged = []
 bluetooth_disabled = []
 bluetooth_enabled = []
-colors_changed = ["pkill -USR2 -f '(^|/)opencode( |$)' || true"]
+colors_changed = []
 logging_out = []
 power_profile_changed = []
 rebooting = []
@@ -651,7 +651,7 @@ wallpaper_scheme = "m3-content"
 
     [theme.templates]
     builtin_ids = [ "gtk3", "gtk4", "kitty", "niri" ]
-    community_ids = [ "opencode", "superfile" ]
+    community_ids = []
     enable_builtin_templates = true
     enable_community_templates = true
 
