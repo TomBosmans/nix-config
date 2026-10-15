@@ -5,6 +5,7 @@
 
   flake.wrappers.myNoctalia = { pkgs, wlib, ... }: let
     system = pkgs.stdenv.hostPlatform.system;
+    myPackages = self.packages.${system};
     wallpapers = ../../../assets/wallpapers;
     configHome = pkgs.symlinkJoin {
       name = "noctalia-config";
@@ -21,7 +22,9 @@
     };
   in {
     imports = [wlib.wrapperModules.noctalia-shell];
-    package = inputs.noctalia.packages.${system}.default;
+    package = inputs.noctalia.packages.${system}.default.override {
+      git = myPackages.myGit;
+    };
 
     env.NOCTALIA_CONFIG_HOME = configHome;
 
