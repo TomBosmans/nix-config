@@ -1,4 +1,4 @@
-{ self, inputs, ... }: {
+{ self, inputs, noctaliaPalette, ... }: {
   flake.nixosModules.noctalia = {
     imports = [self.nixosModules.sourceSans];
   };
@@ -11,6 +11,7 @@
       name = "noctalia-config";
       paths = [
         (pkgs.writeTextDir "noctalia/config.toml" (builtins.readFile ./noctalia-config.toml))
+        (pkgs.writeTextDir "noctalia/palettes/declarative.json" (builtins.readFile noctaliaPalette.file))
         (pkgs.writeTextDir "noctalia/wallpaper.toml" ''
           [wallpaper]
           directory = "${wallpapers}"

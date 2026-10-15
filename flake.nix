@@ -10,6 +10,7 @@
 
     noctalia = { url = "github:noctalia-dev/noctalia"; inputs.nixpkgs.follows = "nixpkgs"; };
     noctalia-greeter = { url = "github:noctalia-dev/noctalia-greeter"; inputs.nixpkgs.follows = "nixpkgs"; };
+    noctalia-palettes = { url = "github:noctalia-dev/community-palettes"; flake = false; };
 
     catppuccin-bat = { url = "github:catppuccin/bat"; flake = false; };
     catppuccin-eza = { url = "github:catppuccin/eza"; flake = false; };

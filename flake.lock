@@ -200,6 +200,22 @@
         "type": "github"
       }
     },
+    "noctalia-palettes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791940790,
+        "narHash": "sha256-mXzEOjyk1CHe07opeRy7ie4WeYNHy2Vadgs0Em9Ic4I=",
+        "owner": "noctalia-dev",
+        "repo": "community-palettes",
+        "rev": "5fd5c8846731da5a1e94d481fb8fcb8e975e8922",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "community-palettes",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin-bat": "catppuccin-bat",
@@ -212,6 +228,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
         "noctalia-greeter": "noctalia-greeter",
+        "noctalia-palettes": "noctalia-palettes",
         "wrapper-modules": "wrapper-modules"
       }
     },
