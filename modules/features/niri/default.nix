@@ -35,7 +35,7 @@
       input.touchpad.natural-scroll = {};
 
       cursor.xcursor-theme = "phinger-cursors-dark";
-      cursor.xcursor-size = 24;
+      cursor.xcursor-size = 12;
 
       layout.gaps = 5;
       layout.focus-ring.width = 2;
@@ -45,10 +45,21 @@
         place-within-backdrop = true;
       }];
 
-      window-rules = [{
-        geometry-corner-radius = 16;
-        clip-to-geometry = true;
-      }];
+      window-rules = [
+        {
+          geometry-corner-radius = 0;
+          clip-to-geometry = true;
+          draw-border-with-background = false;
+        }
+        {
+          matches = [{ is-active = false; }];
+          opacity = 0.90;
+        }
+        {
+          matches = [{ is-active = true; }];
+          opacity = 0.95;
+        }
+      ];
 
       binds = {
         "Mod+Q".close-window = {};
