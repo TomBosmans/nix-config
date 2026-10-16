@@ -8,6 +8,7 @@
       self.nixosModules.zsh
       self.nixosModules.nvim
       self.nixosModules.yazi
+      self.nixosModules.firefox
     ];
 
     programs.niri = {
