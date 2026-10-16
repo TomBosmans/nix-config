@@ -15,6 +15,7 @@
     catppuccin-bat = { url = "github:catppuccin/bat"; flake = false; };
     catppuccin-eza = { url = "github:catppuccin/eza"; flake = false; };
     catppuccin-fzf = { url = "github:catppuccin/fzf"; flake = false; };
+    catppuccin-kitty = { url = "github:catppuccin/kitty"; flake = false; };
     catppuccin-yazi = { url = "github:catppuccin/yazi"; flake = false; };
   };
 

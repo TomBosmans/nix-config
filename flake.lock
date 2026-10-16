@@ -48,6 +48,22 @@
         "type": "github"
       }
     },
+    "catppuccin-kitty": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768528501,
+        "narHash": "sha256-akRkdq8l2opGIg3HZd+Y4eky6WaHgKFQ5+iJMC1bhnQ=",
+        "owner": "catppuccin",
+        "repo": "kitty",
+        "rev": "43098316202b84d6a71f71aaf8360f102f4d3f1a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "kitty",
+        "type": "github"
+      }
+    },
     "catppuccin-yazi": {
       "flake": false,
       "locked": {
@@ -221,6 +237,7 @@
         "catppuccin-bat": "catppuccin-bat",
         "catppuccin-eza": "catppuccin-eza",
         "catppuccin-fzf": "catppuccin-fzf",
+        "catppuccin-kitty": "catppuccin-kitty",
         "catppuccin-yazi": "catppuccin-yazi",
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",

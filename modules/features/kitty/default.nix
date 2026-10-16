@@ -1,4 +1,4 @@
-{ self, config, ... }: {
+{ self, inputs, config, ... }: {
   flake.nixosModules.kitty = {
     imports = [
       self.nixosModules.jetbrainsMono
@@ -45,13 +45,9 @@
       copy_on_select = "clipboard";
     };
 
-    # Theme is managed by Noctalia on linux
-    extraConfig = lib.optionalString pkgs.stdenv.isLinux ''
-      include ''${HOME}/.config/kitty/themes/noctalia.conf
+    extraConfig = ''
+      include ${inputs.catppuccin-kitty}/themes/macchiato.conf
     '';
-
-    # Set Catppuccin-Macchiato theme on mac
-    themeFile = lib.mkIf pkgs.stdenv.isDarwin "Catppuccin-Macchiato";
 
     # Need to look into this a bit more, ctrl+v conflicts with nvim
     # keybindings = {
