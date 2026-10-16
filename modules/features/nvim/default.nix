@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ self, config, ... }: {
   flake.nixosModules.nvim = {
     imports = [config.flake.wrappers.myNvim.install];
 
@@ -10,7 +10,9 @@
     };
   };
 
-  flake.wrappers.myNvim = { pkgs, wlib, ... }: {
+  flake.wrappers.myNvim = { pkgs, wlib, ... }: let
+    myPackages = self.packages.${pkgs.stdenv.hostPlatform.system};
+  in {
     imports = [wlib.wrapperModules.neovim];
 
     settings.config_directory = ./.;
@@ -18,7 +20,10 @@
     runtimePkgs = with pkgs; [
       cargo
       gcc
+      git
       gnumake
+      jq
+      myPackages.myOpencode
       ripgrep
       rustc
       tree-sitter
