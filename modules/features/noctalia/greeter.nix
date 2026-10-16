@@ -1,6 +1,9 @@
-{ inputs, noctaliaPalette, ... }: {
+{ self, inputs, noctaliaPalette, ... }: {
   flake.nixosModules.noctalia-greeter = { pkgs, ... }: {
-    imports = [inputs.noctalia-greeter.nixosModules.default];
+    imports = [
+      self.nixosModules.sourceSans
+      inputs.noctalia-greeter.nixosModules.default
+    ];
 
     services.displayManager.noctalia-greeter = {
       enable = true;
