@@ -1,4 +1,4 @@
-require("plugins.catpuccin")
+require("plugins.catppuccin")
 require("plugins.which-key")
 require("plugins.noice")
 require("plugins.treesitter")
