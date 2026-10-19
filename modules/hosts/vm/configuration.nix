@@ -14,8 +14,5 @@
     boot.loader.efi.canTouchEfiVariables = true;
 
     time.timeZone = "Europe/Brussels";
-
-    # MOVE OUT OF HERE
-    nix.settings.experimental-features = ["nix-command" "flakes"];
   };
 }
