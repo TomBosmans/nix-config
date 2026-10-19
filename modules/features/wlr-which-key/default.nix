@@ -1,12 +1,8 @@
-{ self, config, noctaliaPalette, ... }: {
-  flake.nixosModules.wlrWhichKey = {
-    imports = [
-      self.nixosModules.jetbrainsMono
-      config.flake.wrappers.myWlrWhichKey.install
-    ];
-
-    wrappers.myWlrWhichKey.enable = true;
-  };
+{ config, noctaliaPalette, ... }: {
+  flake.lib.mkMenu = pkgs: menu: (config.flake.wrappers.myWlrWhichKey.apply {
+    inherit pkgs;
+    settings = {inherit menu;};
+  }).wrapper;
 
   flake.wrappers.myWlrWhichKey = { pkgs, wlib, ... }: let
     palette = noctaliaPalette.dark;
@@ -29,7 +25,7 @@
       padding = 14;
       rows_per_column = 8;
       column_padding = 24;
-      anchor = "center";
+      anchor = "bottom-right";
       inhibit_compositor_keyboard_shortcuts = true;
       auto_kbd_layout = true;
     };

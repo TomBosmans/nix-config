@@ -9,7 +9,6 @@
       self.nixosModules.nvim
       self.nixosModules.yazi
       self.nixosModules.firefox
-      self.nixosModules.wlrWhichKey
     ];
 
     programs.niri = {
@@ -22,6 +21,7 @@
 
   flake.wrappers.myNiri = { pkgs, lib, wlib, ... }: let
     myPackages = self.packages.${pkgs.stdenv.hostPlatform.system};
+    niri = lib.getExe pkgs.niri;
     noctalia = lib.getExe myPackages.myNoctalia;
     kitty = lib.getExe myPackages.myKitty;
   in {
@@ -66,12 +66,111 @@
       binds = {
         "Mod+Q".close-window = {};
         "Mod+O".toggle-overview = {};
-        "Mod+Return".spawn-sh = kitty;
+        "Mod+D".spawn-sh = lib.getExe (self.lib.mkMenu pkgs [
+          {
+            key = "f";
+            desc = "Firefox";
+            cmd = lib.getExe myPackages.myFirefox;
+          }
+          {
+            key = "k";
+            desc = "Kitty";
+            cmd = kitty;
+          }
+          {
+            key = "o";
+            desc = "OpenCode";
+            cmd = "${kitty} --detach ${lib.getExe myPackages.myOpencode}";
+          }
+          {
+            key = "y";
+            desc = "Yazi";
+            cmd = "${kitty} --detach ${lib.getExe myPackages.myYazi}";
+          }
+        ]);
         "Mod+Space".spawn-sh = "${noctalia} msg panel-toggle launcher";
-        "Mod+S".spawn-sh = "${noctalia} msg panel-toggle control-center";
-        "Alt+Tab".spawn-sh = "${noctalia} msg window-switcher hold";
-
-        "Mod+Slash".spawn-sh = "${noctalia} msg settings-open";
+        "Mod+S".spawn-sh = lib.getExe (self.lib.mkMenu pkgs [
+          {
+            key = "c";
+            desc = "Control Center";
+            cmd = "${noctalia} msg panel-toggle control-center";
+          }
+          {
+            key = "m";
+            desc = "Media";
+            cmd = "${noctalia} msg panel-toggle control-center media";
+          }
+          {
+            key = "a";
+            desc = "Audio";
+            cmd = "${noctalia} msg panel-toggle control-center audio";
+          }
+          {
+            key = "d";
+            desc = "Monitor";
+            cmd = "${noctalia} msg panel-toggle control-center monitor";
+          }
+          {
+            key = "y";
+            desc = "System";
+            cmd = "${noctalia} msg panel-toggle control-center system";
+          }
+          {
+            key = "n";
+            desc = "Network";
+            cmd = "${noctalia} msg panel-toggle control-center network";
+          }
+          {
+            key = "b";
+            desc = "Bluetooth";
+            cmd = "${noctalia} msg panel-toggle control-center bluetooth";
+          }
+          {
+            key = "e";
+            desc = "Weather";
+            cmd = "${noctalia} msg panel-toggle control-center weather";
+          }
+          {
+            key = "k";
+            desc = "Calendar";
+            cmd = "${noctalia} msg panel-toggle control-center calendar";
+          }
+          {
+            key = "o";
+            desc = "Notifications";
+            cmd = "${noctalia} msg panel-toggle control-center notifications";
+          }
+          {
+            key = "t";
+            desc = "Screen Time";
+            cmd = "${noctalia} msg panel-toggle control-center screen-time";
+          }
+          {
+            key = "p";
+            desc = "Power";
+            cmd = "${noctalia} msg panel-toggle control-center power";
+          }
+          {
+            key = "h";
+            desc = "Clipboard History";
+            cmd = "${noctalia} msg panel-toggle clipboard";
+          }
+          {
+            key = "w";
+            desc = "Wallpaper";
+            cmd = "${noctalia} msg panel-toggle wallpaper";
+          }
+          {
+            key = "x";
+            desc = "Session";
+            cmd = "${noctalia} msg panel-toggle session";
+          }
+          {
+            key = "s";
+            desc = "Settings";
+            cmd = "${noctalia} msg settings-toggle";
+          }
+        ]);
 
         # Navigation
         "Mod+H".focus-column-left = {};
@@ -85,46 +184,91 @@
         "Mod+Ctrl+J".move-window-down-or-to-workspace-down = {};
         "Mod+Ctrl+K".move-window-up-or-to-workspace-up = {};
 
-        # Cycle through preset column widths.
-        "Mod+R".switch-preset-column-width = {};
-        "Mod+Shift+R".switch-preset-column-width-back = {};
-
-        # Fine-grained width adjustment.
-        "Mod+Minus".set-column-width = "-10%";
-        "Mod+Equal".set-column-width = "+10%";
-
-        # Height adjustment for vertically stacked windows.
-        "Mod+Shift+Minus".set-window-height = "-10%";
-        "Mod+Shift+Equal".set-window-height = "+10%";
-        "Mod+Ctrl+R".reset-window-height = {};
-
-        # Maximize and fullscreen.
-        "Mod+F".maximize-column = {};
-        "Mod+Shift+F".fullscreen-window = {};
-        "Mod+M".maximize-window-to-edges = {};
+        # Resize and layout
+        "Mod+R".spawn-sh = lib.getExe (self.lib.mkMenu pkgs [
+          {
+            key = "h";
+            desc = "Narrower";
+            cmd = "${niri} msg action set-column-width -- -10%";
+            keep_open = true;
+          }
+          {
+            key = "l";
+            desc = "Wider";
+            cmd = "${niri} msg action set-column-width -- +10%";
+            keep_open = true;
+          }
+          {
+            key = "j";
+            desc = "Taller";
+            cmd = "${niri} msg action set-window-height -- +10%";
+            keep_open = true;
+          }
+          {
+            key = "k";
+            desc = "Shorter";
+            cmd = "${niri} msg action set-window-height -- -10%";
+            keep_open = true;
+          }
+          {
+            key = "p";
+            desc = "Next preset width";
+            cmd = "${niri} msg action switch-preset-column-width";
+            keep_open = true;
+          }
+          {
+            key = "P";
+            desc = "Previous preset width";
+            cmd = "${niri} msg action switch-preset-column-width-back";
+            keep_open = true;
+          }
+          {
+            key = "r";
+            desc = "Reset height";
+            cmd = "${niri} msg action reset-window-height";
+            keep_open = true;
+          }
+          {
+            key = "f";
+            desc = "Fullscreen";
+            cmd = "${niri} msg action fullscreen-window";
+          }
+          {
+            key = "m";
+            desc = "Maximize column";
+            cmd = "${niri} msg action maximize-column";
+          }
+          {
+            key = "e";
+            desc = "Maximize to edges";
+            cmd = "${niri} msg action maximize-window-to-edges";
+          }
+        ]);
 
         # Position columns.
         "Mod+C".center-column = {};
         "Mod+Ctrl+C".center-visible-columns = {};
 
         # Managing columns
-        "Mod+BracketLeft".consume-or-expel-window-left = {};
-        "Mod+BracketRight".consume-or-expel-window-right = {};
-        "Mod+Comma".consume-window-into-column = {};
-        "Mod+Period".expel-window-from-column = {};
+        "Mod+Shift+H".consume-or-expel-window-left = {};
+        "Mod+Shift+J".consume-window-into-column = {};
+        "Mod+Shift+K".expel-window-from-column = {};
+        "Mod+Shift+L".consume-or-expel-window-right = {};
         "Mod+W".toggle-column-tabbed-display = {};
 
         # Floating windows
-        "Mod+Shift+Space".toggle-window-floating = {};
-
-        # Notifications
-        "Mod+N".spawn-sh = "${noctalia} msg panel-toggle control-center notifications";
-        "Mod+Shift+N".spawn-sh = "${noctalia} msg notification-dnd-toggle";
-        "Mod+Ctrl+N".spawn-sh = "${noctalia} msg notification-clear-active";
-
-        # Clipboard
-        "Mod+V".spawn-sh = "${noctalia} msg panel-toggle clipboard";
-        "Mod+Ctrl+V".spawn-sh = "${noctalia} msg clipboard-clear";
+        "Mod+F".spawn-sh = lib.getExe (self.lib.mkMenu pkgs [
+          {
+            key = "t";
+            desc = "Toggle floating";
+            cmd = "${niri} msg action toggle-window-floating";
+          }
+          {
+            key = "s";
+            desc = "Switch floating or tiling focus";
+            cmd = "${niri} msg action switch-focus-between-floating-and-tiling";
+          }
+        ]);
 
         # Audio
         "XF86AudioRaiseVolume".spawn-sh = "${noctalia} msg volume-up";
