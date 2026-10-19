@@ -13,6 +13,8 @@
     # Allow NixOS to write EFI boot entries in firmware (needed to register systemd-boot)
     boot.loader.efi.canTouchEfiVariables = true;
 
+    time.timeZone = "Europe/Brussels";
+
     # MOVE OUT OF HERE
     nix.settings.experimental-features = ["nix-command" "flakes"];
   };
