@@ -9,6 +9,7 @@
       self.nixosModules.nvim
       self.nixosModules.yazi
       self.nixosModules.firefox
+      self.nixosModules.wlrWhichKey
     ];
 
     programs.niri = {
