@@ -9,6 +9,7 @@
       self.nixosModules.nvim
       self.nixosModules.yazi
       self.nixosModules.firefox
+      self.nixosModules.zathura
     ];
 
     programs.niri = {
@@ -29,6 +30,7 @@
 
     settings = {
       spawn-at-startup = [noctalia];
+      prefer-no-csd = {};
 
       input.keyboard.xkb.layout = "us";
       input.keyboard.xkb.options = "ctrl:nocaps";

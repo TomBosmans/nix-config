@@ -80,6 +80,22 @@
         "type": "github"
       }
     },
+    "catppuccin-zathura": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754177571,
+        "narHash": "sha256-upyfc4OSx9xKUoM/JdRfuXiw38ffoSB/Utm2jpyXgy8=",
+        "owner": "catppuccin",
+        "repo": "zathura",
+        "rev": "9f29c2c1622c70436f0e0b98fea9735863596c1e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "zathura",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -239,6 +255,7 @@
         "catppuccin-fzf": "catppuccin-fzf",
         "catppuccin-kitty": "catppuccin-kitty",
         "catppuccin-yazi": "catppuccin-yazi",
+        "catppuccin-zathura": "catppuccin-zathura",
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",

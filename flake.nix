@@ -17,6 +17,7 @@
     catppuccin-fzf = { url = "github:catppuccin/fzf"; flake = false; };
     catppuccin-kitty = { url = "github:catppuccin/kitty"; flake = false; };
     catppuccin-yazi = { url = "github:catppuccin/yazi"; flake = false; };
+    catppuccin-zathura = { url = "github:catppuccin/zathura"; flake = false; };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake
