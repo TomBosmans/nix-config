@@ -4,14 +4,21 @@
 
     settings = {
       "$schema" = "https://starship.rs/config-schema.json";
-      format = "$directory$git_branch$git_status$line_break$character";
+      format =
+        "$directory$git_branch$git_status"
+        + "$fill$direnv$nodejs$python$ruby$golang$rust$java$php$lua$dotnet"
+        + "$line_break$character";
 
       directory = {
-        format = "[$path]($style)";
+        format = "[$path]($style) ";
         style = "bold blue";
         truncate_to_repo = false;
         truncation_length = 0;
       };
+
+      direnv.disabled = false;
+
+      fill.symbol = " ";
 
       git_branch = {
         format = " [$branch]($style)";

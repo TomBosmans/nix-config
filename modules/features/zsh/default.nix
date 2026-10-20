@@ -13,6 +13,8 @@
     direnvConfig = pkgs.writeTextDir "direnv.toml" ''
       [global]
     '';
+    starship = lib.getExe myPackages.myStarship;
+    starshipBin = lib.makeBinPath [myPackages.myStarship];
   in {
     imports = [wlib.wrapperModules.zsh];
 
@@ -66,7 +68,7 @@
 
       eval "$(direnv hook zsh)"
       eval "$(zoxide init zsh)"
-      eval "$(starship init zsh)"
+      eval "$(PATH=${starshipBin}:$PATH ${starship} init zsh)"
     '';
   };
 }
