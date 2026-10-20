@@ -6,7 +6,7 @@
       "$schema" = "https://starship.rs/config-schema.json";
       format =
         "$directory$git_branch$git_status"
-        + "$fill$direnv$nodejs$python$ruby$golang$rust$java$php$lua$dotnet"
+        + "$fill$nodejs$python$ruby$golang$rust$java$php$lua$dotnet$direnv"
         + "$line_break$character";
 
       directory = {
