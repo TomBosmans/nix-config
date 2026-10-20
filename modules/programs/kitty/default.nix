@@ -49,6 +49,8 @@
       include ${inputs.catppuccin-kitty}/themes/macchiato.conf
     '';
 
+    keybindings."super+enter" = "launch --type=os-window --cwd=current";
+
     # Need to look into this a bit more, ctrl+v conflicts with nvim
     # keybindings = {
     #   "ctrl+v" = "paste_from_clipboard";
