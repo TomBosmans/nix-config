@@ -10,6 +10,9 @@
 
   flake.wrappers.myZsh = { pkgs, lib, wlib, ... }: let
     myPackages = self.packages.${pkgs.stdenv.hostPlatform.system};
+    direnvConfig = pkgs.writeTextDir "direnv.toml" ''
+      [global]
+    '';
   in {
     imports = [wlib.wrapperModules.zsh];
 
@@ -17,6 +20,7 @@
     skipGlobalRC = true;
 
     runtimePkgs = [
+      pkgs.direnv
       pkgs.zoxide
       myPackages.myBat
       myPackages.myEza
@@ -25,6 +29,8 @@
     ];
 
     env = {
+      DIRENV_CONFIG = direnvConfig;
+      DIRENV_LOG_FORMAT = "";
       MANPAGER = "${lib.getExe myPackages.myNvim} +Man!"; # use nvim as man pager
     };
 
@@ -58,6 +64,7 @@
       source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+      eval "$(direnv hook zsh)"
       eval "$(zoxide init zsh)"
       eval "$(starship init zsh)"
     '';
