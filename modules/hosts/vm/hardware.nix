@@ -8,6 +8,7 @@
     boot.extraModulePackages = [ ];
 
     environment.sessionVariables.KITTY_FORCE_SOFTWARE_RENDERING = "1";
+    environment.etc."mpv/mpv.conf".text = "vo=wlshm\n";
 
     fileSystems."/" =
       { device = "/dev/disk/by-uuid/4c9f2e89-9fd2-4f07-936a-ca7a088c3a8c";

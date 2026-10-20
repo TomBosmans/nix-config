@@ -3,6 +3,7 @@
     imports = [
       self.nixosModules.noctalia
       self.nixosModules.kitty
+      self.nixosModules.mpv
       self.nixosModules.git
       self.nixosModules.opencode
       self.nixosModules.zsh

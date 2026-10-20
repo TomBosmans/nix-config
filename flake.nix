@@ -16,6 +16,7 @@
     catppuccin-eza = { url = "github:catppuccin/eza"; flake = false; };
     catppuccin-fzf = { url = "github:catppuccin/fzf"; flake = false; };
     catppuccin-kitty = { url = "github:catppuccin/kitty"; flake = false; };
+    catppuccin-mpv = { url = "github:catppuccin/mpv"; flake = false; };
     catppuccin-yazi = { url = "github:catppuccin/yazi"; flake = false; };
     catppuccin-zathura = { url = "github:catppuccin/zathura"; flake = false; };
   };

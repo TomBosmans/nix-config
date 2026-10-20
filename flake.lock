@@ -64,6 +64,22 @@
         "type": "github"
       }
     },
+    "catppuccin-mpv": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754544320,
+        "narHash": "sha256-oUheJNWk2R6gNEmkK8H6PWX0iofx2KMGDoFWtnr420A=",
+        "owner": "catppuccin",
+        "repo": "mpv",
+        "rev": "08e90daf511eee2c10c98f0031b51bb9de240d60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "mpv",
+        "type": "github"
+      }
+    },
     "catppuccin-yazi": {
       "flake": false,
       "locked": {
@@ -254,6 +270,7 @@
         "catppuccin-eza": "catppuccin-eza",
         "catppuccin-fzf": "catppuccin-fzf",
         "catppuccin-kitty": "catppuccin-kitty",
+        "catppuccin-mpv": "catppuccin-mpv",
         "catppuccin-yazi": "catppuccin-yazi",
         "catppuccin-zathura": "catppuccin-zathura",
         "flake-parts": "flake-parts",
