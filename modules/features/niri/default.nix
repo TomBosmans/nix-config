@@ -5,6 +5,7 @@
       self.nixosModules.kitty
       self.nixosModules.mpv
       self.nixosModules.git
+      self.nixosModules.devbox
       self.nixosModules.opencode
       self.nixosModules.zsh
       self.nixosModules.nvim
