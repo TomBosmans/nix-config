@@ -10,7 +10,6 @@ require("catppuccin").setup({
     diffview = true,
     lsp_trouble = true,
     lualine = true,
-    mason = true,
     neotest = true,
     noice = true,
     notify = true,

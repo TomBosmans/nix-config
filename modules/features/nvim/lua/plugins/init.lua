@@ -23,7 +23,7 @@ require("plugins.lualine")
 require("plugins.telescope")
 require("plugins.blink")
 
-require("plugins.mason")
+require("plugins.lsp")
 require("plugins.docs")
 
 require("plugins.tests")

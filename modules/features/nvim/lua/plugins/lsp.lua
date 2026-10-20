@@ -1,23 +1,16 @@
 vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
-  "https://github.com/mason-org/mason.nvim",
-  "https://github.com/mason-org/mason-lspconfig.nvim",
-  "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 })
 
-require("mason").setup()
-require("mason-lspconfig").setup()
-require("mason-tool-installer").setup({
-  ensure_installed = {
-    "lua_ls",
-    "vtsls",
-    "eslint_d",
-    "biome",
-    "css-lsp",
-    "jsonls",
-    "ruby_lsp",
-    "standardrb"
-  }
+vim.lsp.enable({
+  "biome",
+  "cssls",
+  "jsonls",
+  "lua_ls",
+  "nixd",
+  "ruby_lsp",
+  "standardrb",
+  "vtsls",
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
