@@ -1,0 +1,93 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "last_modified": "2026-10-19T15:20:57Z",
+      "resolved": "github:NixOS/nixpkgs/682ba80136e2c8dacd6b8900f578a72329458901?lastModified=1792423257&narHash=sha256-Kp5HNbXZHMtns98essAFsFEyYR98eIqWJzN6%2FmT%2FplU%3D"
+    },
+    "lua-language-server@latest": {
+      "last_modified": "2026-10-16T02:15:57Z",
+      "resolved": "github:NixOS/nixpkgs/f20cd90e28fe0403873f473b29e42662cd86e8c4#lua-language-server",
+      "source": "devbox-search",
+      "version": "3.19.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/zdy2ldlnmbjjz2mcza5v7m5pqg1fn09g-lua-language-server-3.19.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/zdy2ldlnmbjjz2mcza5v7m5pqg1fn09g-lua-language-server-3.19.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/i3kaiwyrwvbpasn90afff8wlmpa5zsqr-lua-language-server-3.19.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/i3kaiwyrwvbpasn90afff8wlmpa5zsqr-lua-language-server-3.19.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/q7m4y32wcv3lrg2k1dsggpfbhkgabhb8-lua-language-server-3.19.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/q7m4y32wcv3lrg2k1dsggpfbhkgabhb8-lua-language-server-3.19.2"
+        }
+      }
+    },
+    "nixd@latest": {
+      "last_modified": "2026-10-16T02:15:57Z",
+      "resolved": "github:NixOS/nixpkgs/f20cd90e28fe0403873f473b29e42662cd86e8c4#nixd",
+      "source": "devbox-search",
+      "version": "2.9.3",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yajxa4q73bsq34cc43ddqlm9d60361wz-nixd-2.9.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/yajxa4q73bsq34cc43ddqlm9d60361wz-nixd-2.9.3"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7z6ka61y3g879zblmczw3b81saaprnha-nixd-2.9.3",
+              "default": true
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/jbn61qws9pk3fqk5m5wj5lda08610fxk-nixd-2.9.3-debug"
+            }
+          ],
+          "store_path": "/nix/store/7z6ka61y3g879zblmczw3b81saaprnha-nixd-2.9.3"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/va72pzxzj53807h9hqpyhwiv2a0l4a27-nixd-2.9.3",
+              "default": true
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/y48ywb3f038w67l8v7qhk9357bqn4sbf-nixd-2.9.3-debug"
+            }
+          ],
+          "store_path": "/nix/store/va72pzxzj53807h9hqpyhwiv2a0l4a27-nixd-2.9.3"
+        }
+      }
+    }
+  }
+}
