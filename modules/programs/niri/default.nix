@@ -94,6 +94,7 @@
           }
         ]);
         "Mod+Space".spawn-sh = "${noctalia} msg panel-toggle launcher";
+        "Mod+Ctrl+V".spawn-sh = "${noctalia} msg panel-toggle clipboard";
 
         # Screenshots
         "Mod+Shift+3".spawn-sh = "${noctalia} msg screenshot-fullscreen all";
