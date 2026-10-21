@@ -3,6 +3,7 @@
     imports = [
       self.nixosModules.noctalia
       self.nixosModules.kitty
+      self.nixosModules.niri-xremap
       self.nixosModules.mpv
       self.nixosModules.git
       self.nixosModules.devbox
@@ -250,8 +251,7 @@
         ]);
 
         # Position columns.
-        "Mod+C".center-column = {};
-        "Mod+Ctrl+C".center-visible-columns = {};
+        "Mod+Ctrl+C".center-column = {};
 
         # Managing columns
         "Mod+Shift+H".consume-or-expel-window-left = {};
