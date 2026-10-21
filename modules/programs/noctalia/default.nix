@@ -27,6 +27,8 @@
       git = myPackages.myGit;
     };
 
+    runtimePkgs = [pkgs.coreutils pkgs.wl-clipboard];
+
     env.NOCTALIA_CONFIG_HOME = configHome;
 
     envDefault.FONTCONFIG_FILE = pkgs.makeFontsConf {

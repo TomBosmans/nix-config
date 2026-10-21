@@ -94,6 +94,11 @@
           }
         ]);
         "Mod+Space".spawn-sh = "${noctalia} msg panel-toggle launcher";
+
+        # Screenshots
+        "Mod+Shift+3".spawn-sh = "${noctalia} msg screenshot-fullscreen all";
+        "Mod+Shift+4".spawn-sh = "${noctalia} msg screenshot-region";
+
         "Mod+S".spawn-sh = lib.getExe (self.lib.mkMenu pkgs [
           {
             key = "c";
