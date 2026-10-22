@@ -10,23 +10,25 @@
     };
   };
 
-  flake.wrappers.myNvim = { pkgs, wlib, ... }: let
+  flake.wrappers.myNvim = { pkgs, lib, wlib, ... }: let
     myPackages = self.packages.${pkgs.stdenv.hostPlatform.system};
   in {
     imports = [wlib.wrapperModules.neovim];
 
     settings.config_directory = ./.;
 
-    runtimePkgs = with pkgs; [
-      cargo
-      gcc
-      git
-      gnumake
-      jq
-      myPackages.myOpencode
-      ripgrep
-      rustc
-      tree-sitter
-    ];
+    runtimePkgs = with pkgs;
+      [
+        cargo
+        gcc
+        git
+        gnumake
+        jq
+        myPackages.myOpencode
+        ripgrep
+        rustc
+        tree-sitter
+      ]
+      ++ lib.optionals stdenv.isLinux [wl-clipboard];
   };
 }
