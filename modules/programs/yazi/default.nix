@@ -63,7 +63,7 @@
         }
         {
           on = ["e" "o"];
-          run = "shell '${kitty} --detach --directory=\"$PWD\" ${opencode}'";
+          run = "shell '${kitty} --detach --directory=\"$PWD\" ${direnv} exec \"$PWD\" ${opencode}'";
           desc = "Open opencode";
         }
         {
