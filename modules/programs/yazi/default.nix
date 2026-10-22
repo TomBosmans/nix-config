@@ -25,9 +25,12 @@
   };
 
   flake.wrappers.myYazi = { pkgs, lib, wlib, ... }: let
+    system = pkgs.stdenv.hostPlatform.system;
     myPackages = self.packages.${pkgs.stdenv.hostPlatform.system};
     kitty = lib.getExe myPackages.myKitty;
+    nvim = lib.getExe myPackages.myNvim;
     opencode = lib.getExe myPackages.myOpencode;
+    direnv = lib.getExe inputs.nixpkgs.legacyPackages.${system}.direnv;
     zip = lib.getExe pkgs.zip;
     theme = lib.recursiveUpdate
       (builtins.fromTOML (builtins.readFile "${inputs.catppuccin-yazi}/themes/macchiato/catppuccin-macchiato-blue.toml"))
@@ -36,13 +39,21 @@
     imports = [wlib.wrapperModules.yazi];
     package = pkgs.yazi.override {fzf = myPackages.myFzf;};
 
-    runtimePkgs = lib.optionals pkgs.stdenv.isLinux [
-      pkgs.wl-clipboard
-      pkgs.xdg-utils
-    ];
+    runtimePkgs =
+      [inputs.nixpkgs.legacyPackages.${system}.direnv]
+      ++ lib.optionals pkgs.stdenv.isLinux [
+        pkgs.wl-clipboard
+        pkgs.xdg-utils
+      ];
 
     settings = {
       inherit theme;
+
+      yazi.opener.edit = [{
+        run = ''${direnv} exec "$PWD" ${nvim} "$@"'';
+        block = true;
+        for = "unix";
+      }];
 
       keymap.mgr.prepend_keymap = [
         {
