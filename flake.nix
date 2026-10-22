@@ -8,6 +8,8 @@
 
     wrapper-modules.url = "github:nix-community/nix-wrapper-modules";
 
+    disko = { url = "github:nix-community/disko"; inputs.nixpkgs.follows = "nixpkgs"; };
+
     noctalia = { url = "github:noctalia-dev/noctalia"; inputs.nixpkgs.follows = "nixpkgs"; };
     noctalia-greeter = { url = "github:noctalia-dev/noctalia-greeter"; inputs.nixpkgs.follows = "nixpkgs"; };
     noctalia-palettes = { url = "github:noctalia-dev/community-palettes"; flake = false; };
